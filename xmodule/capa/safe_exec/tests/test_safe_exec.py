@@ -85,10 +85,6 @@ class TestSafeOrNot(unittest.TestCase):  # lint-amnesty, pylint: disable=missing
         Demonstrates that running unsafe code inside the code jail
         throws SafeExecException, protecting the calling process.
         '''
-        # Can't test for forbiddenness if CodeJail isn't configured for python.
-        if not jail_code.is_configured("python"):
-            pytest.skip()
-
         g = {}
         with pytest.raises(SafeExecException) as cm:
             safe_exec('import sys; sys.exit(1)', g)
